@@ -1,0 +1,40 @@
+{
+    "name": "حفظ المحتوي المقيد",
+    "description": "بوت حفظ المقيد 🖤.",
+    "logo": "",
+    "keywords": [
+        "telegram",
+        "Save restricted content",
+        "bot"
+    ],
+    "repository": "https://github.com/sir-ahmed/save",
+    "website": "",
+    "success_url": "https://t.me/A7_M3",
+    "env": {
+            "API_HASH": {
+            "description": "Your API HASH from my.telegram.org",
+            "value": "a4bf73a4c7cdeff63c500ce5a4d5c800"
+        },
+        "API_ID": {
+            "description": "Your API ID from my.telegram.org",
+            "value": "28022225"
+        },
+        "BOT_TOKEN": {
+            "description": "Bot token, get it from @BotFather.",
+            "value": ""
+        },
+        "SESSION": {
+            "description": "Pyrogram string session.",
+            "value": ""
+        },
+        "AUTH": {
+            "description": "User ID of Bot owner.",
+            "value": "5449190469"
+        },
+        "FORCESUB": {
+            "description": "Username name of public channel without using '@'.",
+            "value": "D2_RK"
+        }
+    },
+    "stack": "container"
+}    
