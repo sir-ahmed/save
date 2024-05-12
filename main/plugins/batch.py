@@ -35,7 +35,7 @@ ids = []
 async def _batch(event):
     s = False
     if f'{event.sender_id}' in batch:
-        return await event.reply("↢ ما اقدر احتفظ بشئ الان حتي ينتهي حفظ المحتوي الأول")
+        return await event.reply("↢  ما اقدر احتفظ بشئ الان حتي ينتهي حفظ المحتوي الأول")
     async with gagan.conversation(event.chat_id) as conv: 
         if not s:
             await conv.send_message(f"↢ أرسل لي رابط الرسالة التي تريد البدء بالحفظ", buttons=Button.force_reply())
@@ -44,11 +44,11 @@ async def _batch(event):
                 try:
                     _link = get_link(link.text)
                 except Exception:
-                    await conv.send_message("↢ أرسلي فقط رابط المحتوي المقيد الذي تريد حفظه\n\nمـثال : https://t.me/ID_CW/16")
+                    await conv.send_message("↢ أرسلي فقط رابط المحتوي الذي داخل القناه\n\nمـثال : https://t.me/ID_CW/16")
             except Exception as e:
                 #print(e)
                 logger.info(e)
-                return await conv.send_message("↢ القناه مقيش فيها هذا العدد من المحتويات؟")
+                return await conv.send_message("↢  القناه مفيش فيها هذا العدد من المحتويات؟")
             await conv.send_message(f"↢ الان اذا تريد حفظ هذا المحتوي فقط ارسل 1\nواذا كنت تريد حفظ اكتر من محتوي ارسلي رقماً", buttons=Button.force_reply())
             try:
                 _range = await conv.get_reply()
@@ -112,7 +112,7 @@ async def run_batch(userbot, client, sender, countdown, link):
             count_down = f"**↢ جـاري الحفظ**\n\n عـدد التنزيلات : {i+1}"
             #a =ids[i]
             try:
-                msg_id = int(link.split("")[-1])
+                msg_id = int(link.split("/")[-1])
             except ValueError:
                 if '?single' not in link:
                     return await client.send_message(sender, "**↢ ولك الرابط به مشكله حاول مجدداً**")
@@ -120,13 +120,13 @@ async def run_batch(userbot, client, sender, countdown, link):
                 msg_id = int(link_.split("/")[-1])
             integer = msg_id + int(ids[i])
             await get_bulk_msg(userbot, client, sender, link, integer)
-            protection = await client.send_message(sender, f"انتظر `{timer}` ثواني لتجنب حدوث مشاكل 🖤")
+            protection = await client.send_message(sender, f"Sleeping for `{timer}` seconds to avoid Floodwaits and Protect account!")
             await countdown.edit(count_down, 
                                  buttons=[[Button.url("Join Channel", url="https://t.me/D2_RK")]])
             await asyncio.sleep(timer)
             await protection.delete()
         except IndexError as ie:
-            await client.send_message(sender, f" {i}  {ie}  \n\nتم حفظ المحتويات المطلوبه 🖤")
+            await client.send_message(sender, f" {i}  {ie}  \n\nتم جلب المحتوي")
             await countdown.delete()
             break
         except FloodWait as fw:
@@ -151,12 +151,12 @@ async def run_batch(userbot, client, sender, countdown, link):
             logger.info(e)
             await client.send_message(sender, f"حدث خطأ أثناء الاستنساخ, سوف تستمر الدفعة\n\n**الخـطا:** {str(e)}")
             if countdown.text != count_down:
-                await countdown.edit(count_down, buttons=[[Button.url("انضم فضلا", url="https://t.me/D2_RK")]])
+                await countdown.edit(count_down, buttons=[[Button.url("Join Channel", url="https://t.me/D2_RK")]])
         n = i + 1
         if n == len(ids):
             return -2
 
-C = "ايقاف"
+C = "/cancel"
 START_PIC = "https://telegra.ph/file/9efe8211d3cac6f188839.jpg"
 TEXT = "👋 مرحبًا، تم إنشاء هذا الروبوت توفير المحتوى المقيد المدفوع\n\n By :**[Team DaRk](https://t.me/D2_RK)**"
 
@@ -180,7 +180,7 @@ async def start_command(event):
 TEXTING = """
 ```
 لاستخدام الامر مـثال : جلب ثم ضع رابط المحتوي الذي تريده
-للاغلاق استخـدم ايقاف تتم إزالة الحدث لجعل الروبوت يعمل بشكل مثالي.
+للاغلاق استخـدم /cancel تتم إزالة الحدث لجعل الروبوت يعمل بشكل مثالي.
 Thanks - **Team DaRk**
 
 ```
